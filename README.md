@@ -1,89 +1,77 @@
 # MINI-SHELL-C
 
-Project Description
+## Overview
 
-MINI-SHELL-C is a custom Linux command-line shell implemented in C. The shell supports execution of built-in commands, external commands, command parsing, pipe handling, signal management, and basic job control similar to a Unix shell.
+**MINI-SHELL-C** is a simplified Unix/Linux command-line shell implemented in **C**.
+The shell provides a terminal interface where users can enter commands similar to a standard Linux shell. It parses user input, identifies whether the command is internal or external, and executes it using Linux system calls.
 
-Detailed Description (for README)
+This project demonstrates important **Linux system programming concepts** such as process creation, command parsing, signal handling, and job control.
 
-MINI-SHELL-C is a simplified implementation of a Unix/Linux command interpreter written in C.
-The shell continuously accepts user input, parses commands, identifies whether they are internal or external, and executes them using system calls such as fork(), execvp(), and waitpid().
+---
 
-The project demonstrates key Linux system programming concepts including process creation, signal handling, command parsing, and job management.
+## Features
 
-Features
+* Custom shell prompt
+* Execution of built-in commands
+* Execution of external Linux commands
+* Pipe (`|`) support for command chaining
+* Background and foreground job control
+* Signal handling (`Ctrl + C`, `Ctrl + Z`)
+* Job management commands (`jobs`, `fg`, `bg`)
+* Dynamic loading of external commands
+* Modular C programming structure
 
-Custom shell prompt
+---
 
-Built-in command execution
+## Built-in Commands
 
-External command execution
-
-Pipe (|) support
-
-Background and foreground job control
-
-Signal handling (Ctrl+C, Ctrl+Z)
-
-Job management commands (jobs, fg, bg)
-
-Dynamic loading of external commands
-
-Modular design with multiple source files
-
-Internal Commands Implemented
-
-cd
-
-pwd
-
-exit
-
-echo
-
-jobs
-
-fg
-
-bg
-
-These commands are handled directly inside the shell without creating a new process.
-
-External Commands
-
-External commands are dynamically loaded from a command list and executed using execvp() in a child process.
+The shell supports several built-in commands executed internally without creating a new process.
 
 Examples:
 
-ls
+* `cd` – Change directory
+* `pwd` – Print current working directory
+* `exit` – Exit the shell
+* `echo` – Display text or environment values
+* `jobs` – Show stopped jobs
+* `fg` – Bring a job to foreground
+* `bg` – Resume a stopped job in background
 
-cat
+---
 
-grep
+## External Commands
 
-mkdir
+External commands are executed using `fork()` and `execvp()` system calls.
 
-rm
+Examples:
 
-nano
+* `ls`
+* `cat`
+* `grep`
+* `mkdir`
+* `rm`
+* `nano`
+* `ping`
 
-Key System Programming Concepts Used
+---
 
-fork() for process creation
+## System Programming Concepts Used
 
-execvp() for command execution
+This project demonstrates the use of important **Linux system calls and concepts**:
 
-waitpid() for process control
+* `fork()` – Process creation
+* `execvp()` – Executing commands
+* `waitpid()` – Process control
+* `pipe()` – Inter-process communication
+* `dup2()` – Input/Output redirection
+* `signal()` – Signal handling
+* Dynamic memory allocation (`malloc()`)
 
-pipe() for command piping
+---
 
-dup2() for input/output redirection
+## Project Structure
 
-signal() handling for job control
-
-Dynamic memory allocation
-
-Project Structure
+```
 MINI-SHELL-C
 │
 ├── main.c
@@ -92,25 +80,71 @@ MINI-SHELL-C
 ├── header.h
 ├── ext_cmd.txt
 └── README.md
-How to Compile
+```
+
+---
+
+## How It Works
+
+1. The shell displays a custom prompt.
+2. The user enters a command.
+3. The shell extracts the command name.
+4. It checks whether the command is **internal or external**.
+5. Internal commands are executed directly.
+6. External commands are executed using `fork()` and `execvp()`.
+7. The shell continues running until the `exit` command is issued.
+
+---
+
+## Compilation
+
+Compile the project using **GCC**:
+
+```bash
 gcc main.c commands.c scan_input.c -o minishell
-Run
+```
+
+---
+
+## Running the Shell
+
+```bash
 ./minishell
-Example
-minishell$ : ls
+```
+
+---
+
+## Example Usage
+
+```
 minishell$ : pwd
-minishell$ : cd Desktop
+/home/user
+
+minishell$ : ls
+
+minishell$ : cd Documents
+
 minishell$ : ls | grep .c
-Skills Demonstrated
+```
 
-Linux System Programming
+---
 
-Process Management
+## Learning Outcomes
 
-Command Parsing
+This project helps understand:
 
-Signal Handling
+* Linux shell behavior
+* Process management
+* Signal handling
+* Command parsing
+* Job control mechanisms
+* Modular system programming in C
 
-Job Control
+---
 
-Modular C Programming
+## Author
+
+**Nakul Anil Vadar**
+
+Electronics and Telecommunications Engineer
+Interested in **Embedded Systems, System Programming, and Linux Development**.
